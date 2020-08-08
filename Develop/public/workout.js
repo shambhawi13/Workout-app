@@ -21,6 +21,12 @@ async function initWorkout() {
 
 function tallyExercises(exercises) {
   const tallied = exercises.reduce((acc, curr) => {
+    if(acc.totalDuration){
+      acc.totalDuration += curr.duration;
+    }
+    else{
+      acc.totalDuration = curr.duration;
+    }
     if (curr.type === "resistance") {
       acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
       acc.totalSets = (acc.totalSets || 0) + curr.sets;
